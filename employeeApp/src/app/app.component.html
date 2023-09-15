@@ -1,0 +1,26 @@
+<!-- <h2 class="text-success text-center">
+  Welcome to Employee Management System
+</h2> -->
+<div class="jumbotron bg-success text-white text-center">
+  <div class="container">
+    <h2 class="display-4 custom-header">
+      Welcome to Employee Management System
+    </h2>
+  </div>
+</div>
+
+<!-- <div style="text-align: center;">
+    <a [routerLink]="['employee']">Employee</a>&nbsp;&nbsp;&nbsp;
+    <a [routerLink]="['login']">Login</a>&nbsp;&nbsp;&nbsp;
+    <a [routerLink]="['welcome']">Welcome</a>
+</div> -->
+
+<div class="text-center mt-4">
+  <a [routerLink]="['employee']" class="custom-link text-success">Employee</a>
+  <a [routerLink]="['login']" class="custom-link text-success">Login</a>
+  <!-- <a [routerLink]="['welcome', getFirstId()]" class="custom-link text-success">Welcome</a> -->
+  <a [routerLink]="['welcome', getFirstId()]" class="custom-link text-success">Welcome</a>
+</div>
+
+<router-outlet>
+</router-outlet>

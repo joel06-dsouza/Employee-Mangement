@@ -1,0 +1,172 @@
+<h3 style="color: darkcyan;">Employee Management</h3>
+<hr />
+<div class="row">
+    <div class="col-xs-12 col-md-4">
+        <form [formGroup]="empObject.formCustomerGroup">
+            <h3 style="color: darkgreen;">Employee Form</h3>
+            <hr />
+            <div class="row mb-3">
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="First name" aria-label="First name"
+                        [(ngModel)]="empObject.first_name" formControlName="EmployeeFirstName">
+                    <span class="text-danger" *ngIf="empObject.formCustomerGroup.controls['EmployeeFirstName'].dirty"
+                        [hidden]="!(hasError('required','EmployeeFirstName'))">
+                        First Name is required.
+                    </span>
+                    <span class="text-danger" *ngIf="empObject.formCustomerGroup.controls['EmployeeFirstName'].dirty"
+                        [hidden]="!(hasError('pattern','EmployeeFirstName'))">
+                        First Name should be of 3 letters.
+                    </span>
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Last name" aria-label="Last name"
+                        [(ngModel)]="empObject.last_name" formControlName="EmployeeLastName">
+                    <span class="text-danger" *ngIf="empObject.formCustomerGroup.controls['EmployeeLastName'].dirty"
+                        [hidden]="!(hasError('required','EmployeeLastName'))">
+                        Last Name is required.
+                    </span>
+                    <span class="text-danger" *ngIf="empObject.formCustomerGroup.controls['EmployeeLastName'].dirty"
+                        [hidden]="!(hasError('pattern','EmployeeLastName'))">
+                        Last Name should be of 5 letters.
+                    </span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <input type="number" class="form-control" placeholder="Contact No." aria-label="Contact number"
+                        [(ngModel)]="empObject.contact" formControlName="EmployeeContact">
+                    <span class="text-danger" *ngIf="empObject.formCustomerGroup.controls['EmployeeContact'].dirty"
+                        [hidden]="!(hasError('required','EmployeeContact'))">
+                        Contact is required.
+                    </span>
+                    <span class="text-danger" *ngIf="empObject.formCustomerGroup.controls['EmployeeContact'].dirty"
+                        [hidden]="!(hasError('pattern','EmployeeContact'))">
+                        Contact Number should be of 10 digits.
+                    </span>
+                </div>
+                <div class="col">
+                    <input type="email" class="form-control" placeholder="Email" aria-label="Email"
+                        [(ngModel)]="empObject.email" formControlName="EmployeeEmail">
+                    <span class="text-danger" *ngIf="empObject.formCustomerGroup.controls['EmployeeEmail'].dirty"
+                        [hidden]="!(hasError('required','EmployeeEmail'))">
+                        Email is required.
+                    </span>
+                    <span class="text-danger" *ngIf="empObject.formCustomerGroup.controls['EmployeeEmail'].dirty"
+                        [hidden]="!(hasError('pattern','EmployeeEmail'))">
+                        Email Id is not in proper format.
+                    </span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <input type="date" class="form-control" placeholder="DOB" aria-label="Date of Birth"
+                        [(ngModel)]="empObject.dob" formControlName="EmployeeDob">
+                    <span class="text-danger" *ngIf="empObject.formCustomerGroup.controls['EmployeeDob'].dirty"
+                        [hidden]="!(hasError('required','EmployeeDob'))">
+                        Date of Birth is required.
+                    </span>
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Address" aria-label="Address"
+                        [(ngModel)]="empObject.address" formControlName="EmployeeAddress">
+                    <span class="text-danger" *ngIf="empObject.formCustomerGroup.controls['EmployeeAddress'].dirty"
+                        [hidden]="!(hasError('required','EmployeeAddress'))">
+                        Address is required.
+                    </span>
+                </div>
+            </div>
+            <!-- <div class="d-grid gap-2">
+                <button class="btn btn-success" type="submit" [disabled]="!(empObject.formCustomerGroup.valid)"
+                    (click)="insertEmployee()">Submit</button>
+            </div> -->
+            <div class="d-grid gap-2">
+                <button class="btn btn-success" type="submit" [disabled]="!(empObject.formCustomerGroup.valid)"
+                    (click)="insertEmployee()">Submit
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="col-xs-12 col-md-8">
+        <h3 style="color: darkgreen;">Employee Records</h3>
+        <hr />
+        <!-- <table class="table table-bordered border-success" style="width: 50pc;"> -->
+        <table class="table table-bordered border-success">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Contact</th>
+                    <th>Email</th>
+                    <th>Date of Birth</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of employees">
+                    <td>{{item.first_name}}</td>
+                    <td>{{item.last_name}}</td>
+                    <td>{{item.contact}}</td>
+                    <td>{{item.email}}</td>
+                    <!-- <td>{{item.dob}}</td> -->
+                    <td>{{item.dob | date:'yyyy-MM-dd'}}</td>
+                    <td>{{item.address}}</td>
+                    <td>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <button class="btn btn-primary" type="submit" (click)="select(item)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                                        <path
+                                            d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <!-- <div class="col mb-3">
+                                <button class="btn btn-primary" type="submit" (click)="update()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
+                                    </svg>
+                                </button>
+                            </div> -->
+                            <div class="col mb-3">
+                                <button class="btn btn-primary" type="submit" (click)="updateEmployee()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <!-- <div class="col">
+                                <button class="btn btn-danger" type="submit" (click)="delete()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-trash" viewBox="0 0 16 16">
+                                        <path
+                                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
+                                        <path
+                                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
+                                    </svg>
+                                </button>
+                            </div> -->
+                            <div class="col">
+                                <button class="btn btn-danger" type="submit" (click)="deleteEmployee()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-trash" viewBox="0 0 16 16">
+                                        <path
+                                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
+                                        <path
+                                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

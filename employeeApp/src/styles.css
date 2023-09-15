@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+/* styles.css (or your component-specific CSS file) */
+/* In your global CSS or component-specific CSS file */
+app-root {
+    height: 100vh;
+}
+
+/* In your global CSS or component-specific CSS file */
+body,
+html {
+    margin: 0;
+    padding: 0;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

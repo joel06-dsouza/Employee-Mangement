@@ -1,0 +1,27 @@
+/* styles.css (or your component-specific CSS file) */
+
+.custom-link {
+    color: #007bff; /* Blue color, you can change this to your desired color */
+    text-decoration: none; /* Remove underlines */
+    font-weight: bold; /* Make the text bold */
+    margin: 0 10px; /* Add spacing between links */
+    font-size: 18px; /* Adjust the font size */
+  }
+  
+.custom-link:hover {
+  text-decoration: underline; /* Underline the link on hover */
+}
+  
+/* styles.css (or your component-specific CSS file) */
+.custom-header {
+    font-family: "Arial", sans-serif; /* Change the font family */
+    font-size: 28px; /* Change the font size */
+    font-weight: bold; /* Make the text bold */
+    text-transform: uppercase; /* Convert text to uppercase */
+
+  }
+  
+  .custom-header:hover {
+    text-decoration: underline; /* Underline the header on hover */
+  }
+  

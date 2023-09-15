@@ -1,0 +1,56 @@
+<nav class="navbar navbar-dark bg-success justify-content-end">
+    <span class="navbar-brand mb-0 h1">
+      Welcome {{ employeeObj[0].first_name }}
+    </span>
+    <input type="button" class="btn btn-danger" value="Log Out" (click)="logout()" />
+  </nav>
+  
+  <div class="container mt-4">
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <div class="card">
+          <div class="card-header bg-success text-white">
+            Employee Details
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered bg-success">
+                <tbody>
+                  <!-- <tr>
+                    <td class="dark-bg">ID</td>
+                    <td>{{ employeeObj.id }}</td>
+                  </tr> -->
+                  <tr>
+                    <td class="dark-bg">Employee First Name </td>
+                    <td>{{ employeeObj[0].first_name }}</td>
+                  </tr>
+                  <tr>
+                    <td class="dark-bg">Employee Last Name </td>
+                    <td>{{ employeeObj[0].last_name }}</td>
+                  </tr>
+                  <tr>
+                    <td class="dark-bg">Employee Contact Number </td>
+                    <td>{{ employeeObj[0].contact }}</td>
+                  </tr>
+                  <tr>
+                    <td class="dark-bg">Employee Date of Birth</td>
+                    <td>{{ employeeObj[0].dob | date: "mediumDate"}}</td>
+                  </tr>
+                  <tr>
+                    <td class="dark-bg">Employee Email</td>
+                    <td>{{ employeeObj[0].email }}</td>
+                  </tr>
+                  <tr>
+                    <td class="dark-bg">Employee Address</td>
+                    <td>{{ employeeObj[0].address }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+  
