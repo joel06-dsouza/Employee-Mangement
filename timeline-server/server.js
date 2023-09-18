@@ -45,6 +45,7 @@ app.post('/insertEmployee', (req, res) => {
     connection.query(sql, values, (error, result) => {
         if (error) {
             console.error('Error inserting employee:', error);
+            window.alert('Error inserting employee:', error);
             res.status(500).json({ error: 'Error inserting employee' });
         } else {
             console.log('Employee inserted successfully');
@@ -104,6 +105,7 @@ app.get('/getEmployee/:id', (req, res) => {
     connection.query(sql, id, (error, result) => {
         if (error) {
             console.error('Error executing getting data query:', error);
+            window.alert('Error executing getting data query:', error);
             res.status(500).json({ error: 'Error getting data event' });
         } else {
             res.status(200).json(result);
@@ -133,6 +135,7 @@ app.put('/updateEmployee/:id', (req, res) => {
     connection.query(sql, values, (error, result) => {
         if (error) {
             console.error('Error executing UPDATE query:', error);
+            window.alert('Error executing UPDATE query:', error);
             res.status(500).json({ error: 'Error updating event' });
         } else {
             const rowsUpdated = result.affectedRows;
@@ -149,6 +152,7 @@ app.delete('/deleteEmployee/:id', (req, res) => {
     connection.query(sql, id, (error, result) => {
         if(error){
             console.error('Error executing DELETE query:', error);
+            window.alert('Error executing DELETE query:', error);
             res.status(500).json({ error: 'Error deleting event' });
         } else {
             console.log('Employee deleted successfully');

@@ -10,9 +10,8 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatIconModule} from '@angular/material/icon';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatButtonModule} from '@angular/material/button';
+import { PractiseComponent } from './practise/practise.component';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +19,8 @@ import {MatButtonModule} from '@angular/material/button';
     EmployeeComponent,
     PageerrorComponent,
     WelcomeComponent,
-    LoginComponent
+    LoginComponent,
+    PractiseComponent
   ],
   imports: [
     BrowserModule,
@@ -28,10 +28,7 @@ import {MatButtonModule} from '@angular/material/button';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatDividerModule,
-    MatIconModule
+    BrowserAnimationsModule
   ],
   providers: [LoginComponent],
   bootstrap: [AppComponent]

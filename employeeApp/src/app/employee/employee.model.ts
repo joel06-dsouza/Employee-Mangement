@@ -8,6 +8,7 @@ export class Employee{
     email : string;
     dob: Date;
     address: string;
+    isEditing: boolean;
     formCustomerGroup: FormGroup;
 
     constructor() {

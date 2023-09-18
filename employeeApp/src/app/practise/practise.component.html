@@ -1,0 +1,15 @@
+<div *ngFor="let employee of employees; let i = index">
+  <div *ngIf="!employee.isEditing">
+    <span>{{ employee.name }}</span>
+    <span>{{ employee.email }}</span>
+    <button (click)="editEmployee(i)">Edit</button>
+    <button (click)="removeEmployee(i)">Remove</button>
+  </div>
+  <div *ngIf="employee.isEditing">
+    <input type="text" [(ngModel)]="employee.name" />
+    <input type="text" [(ngModel)]="employee.email" />
+    <button (click)="updateEmployee(i)">Update</button>
+    <button (click)="cancelEdit(i)">Cancel</button>
+  </div>
+</div>
+<button (click)="addEmployee()">Add Employee</button>

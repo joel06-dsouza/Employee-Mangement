@@ -5,6 +5,7 @@ import { PageerrorComponent } from './pageerror/pageerror.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
+import { PractiseComponent } from './practise/practise.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'welcome', component: WelcomeComponent, canActivate: [AuthGuard]},
   {path: 'welcome/:id', component: WelcomeComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
+  {path: 'practise', component: PractiseComponent},
   {
     path: 'welcome',
     canActivate: [AuthGuard],
