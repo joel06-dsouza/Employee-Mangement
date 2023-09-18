@@ -45,48 +45,6 @@
                     </span>
                 </div>
                 <div class="col">
-                    <input type="email" class="form-control" placeholder="Email" aria-label="Email"
-                        [(ngModel)]="empObject.email" formControlName="EmployeeEmail">
-                    <span class="text-danger" *ngIf="empObject.formCustomerGroup.controls['EmployeeEmail'].dirty"
-                        [hidden]="!(hasError('required','EmployeeEmail'))">
-                        Email is required.
-                    </span>
-                    <span class="text-danger" *ngIf="empObject.formCustomerGroup.controls['EmployeeEmail'].dirty"
-                        [hidden]="!(hasError('pattern','EmployeeEmail'))">
-                        Email Id is not in proper format.
-                    </span>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col">
-                    <input type="date" class="form-control" placeholder="DOB" aria-label="Date of Birth"
-                        [(ngModel)]="empObject.dob" formControlName="EmployeeDob">
-                    <span class="text-danger" *ngIf="empObject.formCustomerGroup.controls['EmployeeDob'].dirty"
-                        [hidden]="!(hasError('required','EmployeeDob'))">
-                        Date of Birth is required.
-                    </span>
-                </div>
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Address" aria-label="Address"
-                        [(ngModel)]="empObject.address" formControlName="EmployeeAddress">
-                    <span class="text-danger" *ngIf="empObject.formCustomerGroup.controls['EmployeeAddress'].dirty"
-                        [hidden]="!(hasError('required','EmployeeAddress'))">
-                        Address is required.
-                    </span>
-                </div>
-            </div>
-            <!-- <div class="d-grid gap-2">
-                <button class="btn btn-success" type="submit" [disabled]="!(empObject.formCustomerGroup.valid)"
-                    (click)="insertEmployee()">Submit</button>
-            </div> -->
-            <div class="d-grid gap-2">
-                <button class="btn btn-success" type="submit" [disabled]="!(empObject.formCustomerGroup.valid)"
-                    (click)="insertEmployee()">Submit
-                </button>
-            </div>
-        </form>
-    </div>
-    <div class="col-xs-12 col-md-8">
         <h3 style="color: darkgreen;">Employee Records</h3>
         <hr />
         <!-- <table class="table table-bordered border-success" style="width: 50pc;"> -->
