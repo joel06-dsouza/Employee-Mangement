@@ -45,7 +45,7 @@ export class WelcomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("Starting ngOninit!!!")
+    // console.log("Starting ngOninit!!!")
     const id_ls = localStorage.getItem('id');
     console.log(typeof id_ls)
     const numericPart = id_ls.match(/\d+/);
