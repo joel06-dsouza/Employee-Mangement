@@ -2,6 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql2');
 const cors = require('cors')
+const jwt = require("jsonwebtoken")
+const jwtKey = "my_secret_key"
+const jwtExpirySeconds = 3000 //5 //300
 const app = express();
 const PORT = 8080;
 
@@ -85,7 +88,14 @@ app.post('/signin', (req, res) => {
         } else {
             console.log(result)
             if(result.length > 0) {
-                res.status(200).json({ id: result[0].id, message: 'Employee Found!' });
+                const token = jwt.sign({id: result[0].id}, jwtKey, {
+                    algorithm: "HS256",
+                    expiresIn: jwtExpirySeconds,
+                })
+                console.log(token)
+                res.send({token:token, id: result[0].id, message: 'Employee Found!'}); 
+                res.end()
+                // res.status(200).json({ id: result[0].id, message: 'Employee Found!' });
             }
             else {
                 res.status(404).json({ error: 'Employee Not Found!'})

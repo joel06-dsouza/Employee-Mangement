@@ -1,6 +1,6 @@
 <nav class="navbar navbar-dark bg-success justify-content-end">
     <span class="navbar-brand mb-0 h1">
-      Welcome {{ employeeObj[0].first_name }}
+      Welcome {{ employeeObj[0]?.first_name }}
     </span>
     <input type="button" class="btn btn-danger" value="Log Out" (click)="logout()" />
   </nav>
@@ -22,28 +22,28 @@
                   </tr> -->
                   <tr>
                     <td class="dark-bg">Employee First Name </td>
-                    <td>{{ employeeObj[0].first_name }}</td>
+                    <td>{{ employeeObj[0]?.first_name }}</td>
                   </tr>
                   <tr>
                     <td class="dark-bg">Employee Last Name </td>
-                    <td>{{ employeeObj[0].last_name }}</td>
+                    <td>{{ employeeObj[0]?.last_name }}</td>
                   </tr>
                   <tr>
                     <td class="dark-bg">Employee Contact Number </td>
-                    <td>{{ employeeObj[0].contact }}</td>
+                    <td>{{ employeeObj[0]?.contact }}</td>
                   </tr>
                   <tr>
                     <td class="dark-bg">Employee Date of Birth</td>
-                    <td>{{ employeeObj[0].dob }}</td>
-                    <!-- <td>{{ employeeObj[0].dob | date: "mediumDate"}}</td> -->
+                    <td>{{ employeeObj[0]?.dob }}</td>
+                    <!-- <td>{{ employeeObj[0]?.dob | date: "mediumDate"}}</td> -->
                   </tr>
                   <tr>
                     <td class="dark-bg">Employee Email</td>
-                    <td>{{ employeeObj[0].email }}</td>
+                    <td>{{ employeeObj[0]?.email }}</td>
                   </tr>
                   <tr>
                     <td class="dark-bg">Employee Address</td>
-                    <td>{{ employeeObj[0].address }}</td>
+                    <td>{{ employeeObj[0]?.address }}</td>
                   </tr>
                 </tbody>
               </table>

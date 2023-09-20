@@ -9,9 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@auth0/angular-jwt": "^5.1.2",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "express": "4.17.1",
+    "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.6.1"
   }
 }

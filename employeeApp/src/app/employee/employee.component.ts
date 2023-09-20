@@ -95,7 +95,10 @@ export class EmployeeComponent {
     return this.employeeRestService.getqueryEmployees().subscribe((data: Employee[]) => {
 
       this.employees = new Array<Employee>();
+
+      console.log(typeof data)
       for (let item of data) {
+        console.log(typeof item)
         let employee: Employee = new Employee();
         employee.id = item.id;
         employee.first_name = item.first_name;
