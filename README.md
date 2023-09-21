@@ -1,7 +1,7 @@
 
-1.                 Copy of the employee-v1 to employee-v2
+                 Copy of the employee-v1 to employee-v2
 
-2.                 Removed the Form Part And Made a builtin form with the table using FormArray. 
+                 Removed the Form Part And Made a builtin form with the table using FormArray. 
                     Functionalities - 
 
                      i. Insert An Employee
@@ -12,7 +12,7 @@
   
                     iv. Normal Functions of adding a new row, adding validation on each input tag, changing the functions based on the state (is editing or not).
 
-3.                Convert the Dummy Token to JWT TOKENS and Storing them in Localstorage.
+                Convert the Dummy Token to JWT TOKENS and Storing them in Localstorage.
 
                   Activating Authguard on all Routes. 
 
