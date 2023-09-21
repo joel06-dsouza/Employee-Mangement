@@ -2,6 +2,8 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import { Employee } from './employee.model';
 import { EmployeeRestService } from './employee.service';
 import { FormGroup, FormBuilder, FormControl, Validators, FormArray } from '@angular/forms';
+import { SharedDataService } from '../shared-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee',
@@ -28,7 +30,11 @@ export class EmployeeComponent {
     address: [{ type: 'required', message: 'Address is required' }],
   };
 
-  constructor(private employeeRestService: EmployeeRestService, private fb: FormBuilder) {
+  constructor(private employeeRestService: EmployeeRestService,
+    private fb: FormBuilder,
+    private sharedDataService: SharedDataService,
+    private router: Router
+  ) {
     this.loadqueryEmployees();
   }
 
@@ -110,6 +116,9 @@ export class EmployeeComponent {
         employee.dob = item.dob;
         employee.address = item.address;
         this.employees.push(employee)
+        // const getToken = this.sharedDataService.getToken();
+        // console.log(getToken)
+        // console.log(localStorage.getItem('token'))
       }
     });
   }
@@ -126,27 +135,36 @@ export class EmployeeComponent {
   /* Insertion */
   /* Insertion within mysql*/
   insertEmployee() {
-    var employeedto: any = {};
-    employeedto.first_name = this.empObject.first_name;
-    employeedto.last_name = this.empObject.last_name;
-    employeedto.contact = this.empObject.contact;
-    employeedto.email = this.empObject.email;
-    employeedto.dob = this.empObject.dob;
-    employeedto.address = this.empObject.address;
-    employeedto.isEditing = true;
+    console.log("Verifying While Inserting!!!!")
+    const getToken = this.sharedDataService.getToken();
+    // console.log(getToken)
+    // console.log(localStorage.getItem('token'))
+    if (getToken === localStorage.getItem('token')) {
+      var employeedto: any = {};
+      employeedto.first_name = this.empObject.first_name;
+      employeedto.last_name = this.empObject.last_name;
+      employeedto.contact = this.empObject.contact;
+      employeedto.email = this.empObject.email;
+      employeedto.dob = this.empObject.dob;
+      employeedto.address = this.empObject.address;
+      employeedto.isEditing = true;
 
-    this.employeeRestService.insertqueryEmployees(employeedto).subscribe(
-      (response) => {
-        console.log('Employee inserted successfully', response);
-      },
-      (error) => {
-        window.alert('Error inserting employee');
-        console.error('Error inserting employee', error);
-      });
+      this.employeeRestService.insertqueryEmployees(employeedto).subscribe(
+        (response) => {
+          console.log('Employee inserted successfully', response);
+        },
+        (error) => {
+          window.alert('Error inserting employee');
+          console.error('Error inserting employee', error);
+        });
       this.loadqueryEmployees();
       this.myForm.reset();
       this.clear();
+
+    } else {
+      this.router.navigate(['login'])
     }
+  }
 
   /* Deletion */
   /* Deletion within mysql*/
@@ -162,24 +180,34 @@ export class EmployeeComponent {
   /* Updation within mysql*/
 
   updateEmployees(index: number) {
-    var employeedto: any = {};
-    employeedto.id = this.employees[index].id;
-    employeedto.first_name = this.employees[index].first_name;
-    employeedto.last_name = this.employees[index].last_name;
-    employeedto.contact = this.employees[index].contact;
-    employeedto.email = this.employees[index].email;
-    employeedto.dob = this.employees[index].dob;
-    employeedto.address = this.employees[index].address;
+    console.log("Verifying While Updating!!!!")
+    const getToken = this.sharedDataService.getToken();
+    console.log(getToken)
+    console.log(localStorage.getItem('token'))
+    
+    if(getToken === localStorage.getItem('token')) {
+      var employeedto: any = {};
+      employeedto.id = this.employees[index].id;
+      employeedto.first_name = this.employees[index].first_name;
+      employeedto.last_name = this.employees[index].last_name;
+      employeedto.contact = this.employees[index].contact;
+      employeedto.email = this.employees[index].email;
+      employeedto.dob = this.employees[index].dob;
+      employeedto.address = this.employees[index].address;
+  
+      console.log(employeedto.id)
+      console.log(employeedto)
+      this.employeeRestService.updatequeryEmployees(employeedto.id, employeedto).subscribe((data: {}) => {
+        window.alert("Data Updated Successfully!!!")
+      });
+      this.employees[index].isEditing = false;
+      this.loadqueryEmployees();
+      this.myForm.reset();
+      this.clear();
+    } else {
+      this.router.navigate(['login'])
+    }
 
-    console.log(employeedto.id)
-    console.log(employeedto)
-    this.employeeRestService.updatequeryEmployees(employeedto.id, employeedto).subscribe((data: {}) => {
-      window.alert("Data Updated Successfully!!!")
-    });
-    this.employees[index].isEditing = false;
-    this.loadqueryEmployees();
-    this.myForm.reset();
-    this.clear();
   }
 
   hasError(typeofvalidator: string, controlname: string): boolean {

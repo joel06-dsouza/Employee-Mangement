@@ -3,7 +3,7 @@ import { EmployeeRestService } from '../employee/employee.service';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Employee } from '../employee/employee.model';
 import { SharedDataService } from '../shared-data.service';
-import CryptoJS from 'crypto-js';
+import * as CryptoJS from 'crypto-js';
 
 
 @Component({
@@ -23,10 +23,11 @@ export class WelcomeComponent implements OnInit {
   ) {
     this.route.params.subscribe(params => {
       this.first_id = params['id'];
+      console.log(this.first_id)
     })
 
-    console.log(localStorage.getItem('id'))
-    console.log(typeof this.first_id)
+    // console.log(localStorage.getItem('id'))
+    // console.log(typeof this.first_id)
 
     const encryptedIdFromLocalStorage = localStorage.getItem("id");
     const decryptedData = CryptoJS.AES.decrypt(encryptedIdFromLocalStorage, 'encryptionSecret');
@@ -45,14 +46,11 @@ export class WelcomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // console.log("Starting ngOninit!!!")
-    const id_ls = localStorage.getItem('id');
-    console.log(typeof id_ls)
-    const numericPart = id_ls.match(/\d+/);
-    console.log(numericPart);
-    const idNumber = parseInt(numericPart[0], 10);
-    console.log(idNumber);
-    this.sharedDataService.setFirstId(idNumber);
+    console.log("Starting ngOninit!!!")
+    const encryptedIdFromLocalStorage = localStorage.getItem("id");
+    const decryptedData = CryptoJS.AES.decrypt(encryptedIdFromLocalStorage, 'encryptionSecret');
+    const id = JSON.parse(decryptedData.toString(CryptoJS.enc.Utf8));
+    this.sharedDataService.setFirstId(id);
   }
 
   getEmployeesById(first_id: number) {

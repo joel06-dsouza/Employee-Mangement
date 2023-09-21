@@ -9,7 +9,7 @@ import { PractiseComponent } from './practise/practise.component';
 
 
 const routes: Routes = [
-  {path: '', component: EmployeeComponent, canActivate: [AuthGuard]},
+  {path: '', component: LoginComponent, canActivate: [AuthGuard]},
   {path: 'employee', component: EmployeeComponent, canActivate: [AuthGuard]},
   {path: 'welcome', component: WelcomeComponent, canActivate: [AuthGuard]},
   {path: 'welcome/:id', component: WelcomeComponent, canActivate: [AuthGuard]},

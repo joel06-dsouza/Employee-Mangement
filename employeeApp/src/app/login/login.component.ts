@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { EmployeeRestService } from '../employee/employee.service';
-import { forkJoin, switchMap } from 'rxjs';
 import { LoginRestService } from './login.service';
-import CryptoJS from 'crypto-js';
+import * as CryptoJS from 'crypto-js';
+import { SharedDataService } from '../shared-data.service';
 
 
 @Component({
@@ -18,8 +16,6 @@ export class LoginComponent {
   first_id: number;
   dob_id: number;
 
-  dummyToken = '2a1b9e0c3f5d8h7a';
-
   loginForm = new FormGroup({
     UserName: new FormControl('', [Validators.required, Validators.minLength(3)]),
     Password: new FormControl('', [Validators.required, Validators.minLength(3)])
@@ -27,9 +23,8 @@ export class LoginComponent {
 
   constructor(
     private router: Router,
-    private employeeRestService: EmployeeRestService,
-    private http: HttpClient,
-    private loginRestService: LoginRestService
+    private loginRestService: LoginRestService,
+    private sharedDataService: SharedDataService
   ) {
     this.IsAuthenticationFailed = false;
   }
@@ -44,7 +39,6 @@ export class LoginComponent {
       console.log('Logged In successfully!', response);
       console.log(Object.keys(response));
 
-
       if (Object.keys(response)[0] != "token") {
         this.IsAuthenticationFailed = true;
         console.log("Employee Not Found!");
@@ -53,16 +47,21 @@ export class LoginComponent {
         const id = Object.values(response)[1];
         console.log(id)
         localStorage.setItem("token", JSON.stringify(Object.values(response)[0]));
+        const token = JSON.stringify(Object.values(response)[0]);
+
+        console.log(token)
+        this.sharedDataService.setToken(token)
+        console.log(this.sharedDataService.getToken())
+
         const encryptedId = CryptoJS.AES.encrypt(JSON.stringify(id), 'encryptionSecret').toString();
         localStorage.setItem("id", encryptedId)
         this.router.navigate(['welcome', id]);
       }
-    },
-      (error) => {
-        this.IsAuthenticationFailed = true;
-        window.alert("Invalid User Credentials")
-        console.error('Error while Logged In!', error);
-      });
+    }, (error) => {
+      this.IsAuthenticationFailed = true;
+      window.alert("Invalid User Credentials")
+      console.error('Error while Logged In!', error);
+    });
   }
 
 }
