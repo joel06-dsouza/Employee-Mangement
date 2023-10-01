@@ -7,7 +7,7 @@ import { Employee } from "./employee.model";
 @Injectable({ providedIn: 'root' })
 export class EmployeeRestService {
     apiURL = "http://localhost:3000";
-    dbURL = "http://localhost:8080";
+    dbURL = "http://localhost:2001";
 
     constructor(private http: HttpClient) { }
 

@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken")
 const jwtKey = "my_secret_key"
 const jwtExpirySeconds = 3000 //5 //300
 const app = express();
-const PORT = 8080;
+const PORT = 2001;
 
 app.use(cors())
 app.use(bodyParser.json());

@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 
 @Injectable({providedIn: 'root' })
 export class LoginRestService {
-    dbURL = "http://localhost:8080";
+    dbURL = "http://localhost:2001";
 
     constructor(private http: HttpClient) {
     }
