@@ -11,6 +11,10 @@ export class AppComponent {
   constructor(private sharedDataService: SharedDataService) {
   }
 
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem("token")
+  }
+
   getFirstId() {
     // console.log(
     //   "executing first id"
